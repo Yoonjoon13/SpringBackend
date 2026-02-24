@@ -28,4 +28,11 @@ public class UserController {
         UserDto.SignupRes response = userService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDto.LoginRes> login(@RequestBody UserDto.LoginReq dto) {
+        UserDto.LoginRes response = userService.login(dto);
+        System.out.println("조회 됨");
+        return ResponseEntity.ok(response);
+    }
 }

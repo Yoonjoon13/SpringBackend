@@ -45,6 +45,14 @@ public class UserDto {
     public static class LoginReq {
         private String email;
         private String password;
+
+        public User toEntity() {
+            return User.builder()
+                    .email(this.email)
+                    .password(this.password)
+                    .build();
+        }
+
     }
 
     @Builder

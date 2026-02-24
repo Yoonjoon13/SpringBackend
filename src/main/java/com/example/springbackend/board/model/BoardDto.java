@@ -1,6 +1,7 @@
 package com.example.springbackend.board.model;
 
 import com.example.springbackend.user.userModel.User;
+import lombok.Builder;
 import lombok.Getter;
 
 public class BoardDto {
@@ -15,8 +16,28 @@ public class BoardDto {
             return Board.builder()
                     .title(this.title)
                     .contents(this.contents)
-                    .user(user)
                     .watched(0L)
+                    .user(user)
+                    .build();
+        }
+    }
+
+    @Builder
+    @Getter
+    public static class BoardRes {
+        private Long idx;
+        private String title;
+        private String contents;
+        private Long watched;
+        private String username;
+
+        public static BoardRes from(Board entity) {
+            return BoardRes.builder()
+                    .idx(entity.getIdx())
+                    .title(entity.getTitle())
+                    .contents(entity.getContents())
+                    .watched(entity.getWatched())
+                    .username(entity.getUser() != null ? entity.getUser().getName() : null)
                     .build();
         }
     }
