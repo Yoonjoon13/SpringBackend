@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 
@@ -48,5 +49,10 @@ public class BoardController {
     public ResponseEntity<Void> delete(@PathVariable Long idx, @RequestParam String username) {
         boardService.delete(idx, username);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleBadRequest(IllegalArgumentException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 }

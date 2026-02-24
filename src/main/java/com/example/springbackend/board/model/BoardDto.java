@@ -11,6 +11,27 @@ public class BoardDto {
         private String title;
         private String contents;
         private String username;
+        private String userName;
+        private String name;
+        private String author;
+        private String email;
+        private Long userId;
+
+        public String getAnyUsername() {
+            if (this.username != null && !this.username.isBlank()) {
+                return this.username;
+            }
+            if (this.userName != null && !this.userName.isBlank()) {
+                return this.userName;
+            }
+            if (this.name != null && !this.name.isBlank()) {
+                return this.name;
+            }
+            if (this.author != null && !this.author.isBlank()) {
+                return this.author;
+            }
+            return null;
+        }
 
         public Board toEntity(User user) {
             return Board.builder()
