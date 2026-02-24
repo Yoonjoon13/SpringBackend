@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
         origins = "http://localhost:5173",
         allowedHeaders = "*",
         allowCredentials = "true",
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.PUT, RequestMethod.DELETE}
+        methods = {RequestMethod.GET, RequestMethod.POST}
 )
 @RequestMapping("/user")
 @RestController
@@ -33,6 +33,6 @@ public class UserController {
     public ResponseEntity<UserDto.LoginRes> login(@RequestBody UserDto.LoginReq dto) {
         UserDto.LoginRes response = userService.login(dto);
         System.out.println("조회 됨");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(response);//
     }
 }

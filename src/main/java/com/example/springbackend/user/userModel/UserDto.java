@@ -52,7 +52,6 @@ public class UserDto {
                     .password(this.password)
                     .build();
         }
-
     }
 
     @Builder
